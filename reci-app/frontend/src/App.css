@@ -1,0 +1,204 @@
+body {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  background-color: hsl(330, 100%, 98%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.App {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 700px;       /* Max width on desktop */
+  width: 90%;             /* Responsive for mobile */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  position: relative;
+  animation: adapt 0s forwards; /* Apply keyframe instantly */
+}
+
+/* Keyframes define static layout positions */
+@keyframes adapt {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 0; /* Can adjust here if needed for different screens */
+  }
+}
+
+/* Optional: tweak for mobile */
+@media (max-width: 768px) {
+  .App {
+    animation: adapt-mobile 0s forwards;
+  }
+}
+/* Desktop/laptop tweaks */
+@media (min-width: 1024px) {
+  .App {
+    width: 50%;        /* Adjust width for bigger screens */
+    max-width: 700px;  /* Keep max-width */
+    margin: 0 auto;    /* Centers horizontally */
+  }
+}
+@keyframes adapt-mobile {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 0; /* static, but could change values if needed */
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid hsl(30, 18%, 87%);
+}
+
+.table>div {
+  padding: 10px;
+  border-bottom: 1px solid hsl(30, 18%, 87%);
+}
+
+.contents {
+  color: hsl(14, 45%, 36%);
+  font-weight: bold;
+}
+
+
+/* Young Serif regular */
+.young-serif-regular {
+  font-family: "Young Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Outfit with variable weight */
+.outfit-light {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  /* light */
+  font-style: light;
+}
+
+.outfit-regular {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  /* regular */
+  font-style: normal;
+}
+
+.outfit-bold {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  /* bold */
+  font-style: bold;
+}
+
+img {
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+
+.list {
+  /* border: 2px solid black; */
+  background-color: hsl(330, 100%, 98%);
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 26px;
+  padding: 36px;
+  border-radius: 25px;
+}
+
+.heading {
+  color: hsl(332, 51%, 32%);
+  font-size: 18px;
+}
+
+
+.ingredients {
+  margin: 32px;
+
+}
+
+.ingredients-list {
+  font-size: 24px;
+  color: hsl(14, 45%, 36%);
+}
+
+ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 20px;
+  padding-left: 20px;
+  display: block;
+  /* important */
+}
+
+
+ul li::marker {
+  color: hsl(14, 45%, 36%);
+  /* bullet color */
+  font-size: 1.2em;
+  /* optional, make the dot bigger */
+  list-style-type: disc;
+}
+
+ol li::marker {
+  color: hsl(14, 45%, 36%);
+  /* bullet color */
+  font-size: 1.2em;
+  /* optional, make the dot bigger */
+
+
+}
+
+ol {
+  list-style-type: decimal;
+  /* ✅ ensures numbers */
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid hsl(30, 18%, 87%);
+  margin: 20px 0;
+}
+
+.contents {
+  font-size: 19px;
+  color: hsl(14, 45%, 36%);
+}
