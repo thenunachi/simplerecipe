@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
-
+# CORS(app)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}) # prevents browser error
 
 
