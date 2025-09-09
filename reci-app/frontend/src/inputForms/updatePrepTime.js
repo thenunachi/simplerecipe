@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 
 
-const UpdatePrepTime = ({ props }) => {
+const UpdatePrepTime = ({ id,fetchPrepTimes }) => {
     const [totalTime, setTotalTime] = useState("");
     const [preparation, setPreparation] = useState("");
     const [cooking, setCooking] = useState("");
@@ -12,13 +12,16 @@ const UpdatePrepTime = ({ props }) => {
     useEffect(() => {
         //this fetch function fetches the data from backend and helps
         //in the state to repopulate the feilds
-        if(!id)return;
-        fetch(`http://127.0.0.1:8000/preparation/${id}/`)
+        if (!id) return;
+        fetch(`http://127.0.0.1:8000/preparation/${id}`)
             .then((res) => res.json())
             .then((data) => {
-                setTotalTime(data.total);
-                setPreparation(data.preparation);
-                setCooking(data.cooking);
+                console.log(data, "data from update")
+                const prep = data.prep_time || data
+                setTotalTime(prep.total);
+                setPreparation(prep.preparation);
+                setCooking(prep.cooking);
+                
             })
             .catch((err) => console.error("Error fetching prep time:", err));
     }, [id]);
@@ -31,7 +34,7 @@ const UpdatePrepTime = ({ props }) => {
         }
         setError("");
         //this fetch sends the updated values to backend
-        fetch(`http://127.0.0.1:8000/preparation/${id}/`, {
+        fetch(`http://127.0.0.1:8000/preparation/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },//tell server that data in body in JSON format
             body: JSON.stringify({ //JSON.stringify converts object to string
@@ -41,7 +44,12 @@ const UpdatePrepTime = ({ props }) => {
             }),
         })
             .then((res) => res.json()) //parses the response from server and convert to obj
-            .then((data) => console.log("Updated:", data))
+            .then((data) => {console.log("Updated:", data)
+                fetchPrepTimes();
+                setTotalTime("")
+                setPreparation("")
+                setCooking("")
+            })
             .catch((err) => console.error("Error:", err));
     }
 

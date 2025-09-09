@@ -9,12 +9,29 @@ import { useState, useEffect } from 'react';
 function App() {
   const [prepTime, setPrepTime] = useState([])
   const [editingId, setEditingId] = useState(0)
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/preparation/")
+  const fetchPrepTimes = () => {
+    fetch("http://localhost:8000/preparation/")
       .then((res) => res.json())
-      .then((data) => setPrepTime(data))
-  }, [prepTime])
-  console.log(prepTime, "prepTime")
+      .then((data) => setPrepTime(data.prep_times));
+  };
+
+  useEffect(() => {
+    fetchPrepTimes();
+  }, []);
+
+
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8000/preparation/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Deleted:", data);
+        fetchPrepTimes();// refresh list here too
+      })
+      .catch((err) => console.error("Error deleting prep time:", err));
+  };
   return (
     <div className="App">
 
@@ -29,18 +46,20 @@ function App() {
         <div className='heading '>
           Preparation time
         </div>
-        <PrepTime />
-        {prepTime.prep_times && prepTime.prep_times.map((e) => (
-          <>
+
+        {prepTime && prepTime.map((e) => (
+          <div key={e.id}>
             <ul className="prep-time">
               <button onClick={() => setEditingId(e.id)}>Edit</button>
+              <button onClick={() => handleDelete(e.id)}>Delete</button>
               <li className='outfit-light'><span className='outfit-bold'>Total</span>: <span>{e.total}</span></li>
               <li className='outfit-light'><span className='outfit-bold'>Preparation</span>: <span>{e.preparation}</span></li>
               <li className='outfit-light'><span className='outfit-bold'>Cooking</span>: <span>{e.cooking}</span></li>
             </ul>
-            {editingId && < UpdatePrepTime id={editingId} />}
-          </>))}
+            {editingId === e.id && < UpdatePrepTime id={editingId} fetchPrepTimes={fetchPrepTimes} />}
 
+          </div>))}
+        <PrepTime fetchPrepTimes={fetchPrepTimes} />
       </div>
 
       <div className='ingredients'>

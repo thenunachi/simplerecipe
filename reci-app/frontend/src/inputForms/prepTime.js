@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 
 
-const PrepTime = () => {
+const PrepTime = ({ fetchPrepTimes }) => {
     const [totalTime, setTotalTime] = useState("");
     const [preparation, setPreparation] = useState("");
     const [cooking, setCooking] = useState("");
@@ -28,16 +28,14 @@ const PrepTime = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log("Saved:", data);
+                fetchPrepTimes();
+                setTotalTime("")
+                setPreparation("")
+                setCooking("")
             })
             .catch((err) => console.error("Error:", err));
 
-     
-        // fetch(`http://127.0.0.1:5000/preparation/${id}`, {
-        //     method: "DELETE",
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => console.log("Deleted:", data))
-        //     .catch((err) => console.error("Error:", err));
+
     }
     return (
         <>
