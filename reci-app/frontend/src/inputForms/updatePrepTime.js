@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 
 
-const UpdatePrepTime = ({ id }) => {
+const UpdatePrepTime = ({ props }) => {
     const [totalTime, setTotalTime] = useState("");
     const [preparation, setPreparation] = useState("");
     const [cooking, setCooking] = useState("");
@@ -12,7 +12,8 @@ const UpdatePrepTime = ({ id }) => {
     useEffect(() => {
         //this fetch function fetches the data from backend and helps
         //in the state to repopulate the feilds
-        fetch(`http://127.0.0.1:5000/preparation/${id}/`)
+        if(!id)return;
+        fetch(`http://127.0.0.1:8000/preparation/${id}/`)
             .then((res) => res.json())
             .then((data) => {
                 setTotalTime(data.total);
@@ -30,7 +31,7 @@ const UpdatePrepTime = ({ id }) => {
         }
         setError("");
         //this fetch sends the updated values to backend
-        fetch(`http://127.0.0.1:5000/preparation/${id}`, {
+        fetch(`http://127.0.0.1:8000/preparation/${id}/`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },//tell server that data in body in JSON format
             body: JSON.stringify({ //JSON.stringify converts object to string

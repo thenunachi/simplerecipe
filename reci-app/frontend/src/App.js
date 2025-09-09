@@ -3,7 +3,18 @@ import './App.css';
 import egg from './img/image-omelette.jpeg';
 import PrepTime from './inputForms/prepTime';
 import UpdatePrepTime from './inputForms/updatePrepTime';
+import { useState, useEffect } from 'react';
+
+
 function App() {
+  const [prepTime, setPrepTime] = useState([])
+  const [editingId, setEditingId] = useState(0)
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/preparation/")
+      .then((res) => res.json())
+      .then((data) => setPrepTime(data))
+  }, [prepTime])
+  console.log(prepTime, "prepTime")
   return (
     <div className="App">
 
@@ -18,13 +29,18 @@ function App() {
         <div className='heading '>
           Preparation time
         </div>
-        <ul className="prep-time">
-          <li className='outfit-light'><span className='outfit-bold'>Total</span>: <span>Approximately 10 minutes</span></li>
-          <li className='outfit-light'><span className='outfit-bold'>Preparation</span>: <span>5 minutes</span></li>
-          <li className='outfit-light'><span className='outfit-bold'>Cooking</span>: <span>5 minutes</span></li>
-        </ul>
-        <PrepTime/>
-        {/* <UpdatePrepTime/> */}
+        <PrepTime />
+        {prepTime.prep_times && prepTime.prep_times.map((e) => (
+          <>
+            <ul className="prep-time">
+              <button onClick={() => setEditingId(e.id)}>Edit</button>
+              <li className='outfit-light'><span className='outfit-bold'>Total</span>: <span>{e.total}</span></li>
+              <li className='outfit-light'><span className='outfit-bold'>Preparation</span>: <span>{e.preparation}</span></li>
+              <li className='outfit-light'><span className='outfit-bold'>Cooking</span>: <span>{e.cooking}</span></li>
+            </ul>
+            {editingId && < UpdatePrepTime id={editingId} />}
+          </>))}
+
       </div>
 
       <div className='ingredients'>
