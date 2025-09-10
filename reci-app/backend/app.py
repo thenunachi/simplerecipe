@@ -1,7 +1,7 @@
 import sqlite3  #interact with the SQLite database.
 from flask import Flask, request, jsonify #flask to create web server,request to handle HTTp req and jsonify to convert python data to fronend json response
 from flask_cors import CORS #connect with frontend
-from models import db,PreparationTime,Recipe,Ingredients
+from models import db,PreparationTime,Recipe,Ingredients,Nutrition
 from forms.prepForm import PrepForm, UpdatePrepForm
 from routes.preparation import prep_routes
 from routes.recipe import recipe_routes
@@ -23,6 +23,7 @@ with app.app_context():
 
 app.register_blueprint(prep_routes, url_prefix ='/preparation')
 app.register_blueprint(recipe_routes, url_prefix='/recipes')
+# app.register_blueprint()
 
 if __name__ == "__main__":
     app.run(debug=True,port=8000)

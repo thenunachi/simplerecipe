@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models import db, Recipe, Ingredients, PreparationTime
+from models import db, Recipe, Ingredients, PreparationTime,Nutrition
 from flask_cors import cross_origin
 
 recipe_routes = Blueprint('recipe', __name__)
@@ -32,7 +32,7 @@ def add_recipe():
     description = data.get("description")
     prep_time = data.get("prepTime")
     ingredients = data.get("ingredients", [])
-    
+    nutrition = data.get("nutrition")
 
     if not title or not description:
         return {"error": "Title and description are required"}, 400
@@ -51,12 +51,20 @@ def add_recipe():
             recipe_id=recipe.id
         )
         db.session.add(pt)
-
+    
     # Add ingredients
     for ing_name in ingredients:
         ingredient = Ingredients(name=ing_name, recipe_id=recipe.id)
         db.session.add(ingredient)
-
+    if nutrition:
+        nutrition = Nutrition(
+            calories = nutrition.get("calories"),
+            protein = nutrition.get("protein"),
+            fat = nutrition.get("fat"),
+            carbs = nutrition.get("carbs"),
+            recipe_id = recipe.id
+        )
+        db.session.add(nutrition)
     db.session.commit()
 
     return jsonify(recipe.to_dict()), 201
