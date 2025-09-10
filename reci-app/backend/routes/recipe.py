@@ -32,6 +32,7 @@ def add_recipe():
     description = data.get("description")
     prep_time = data.get("prepTime")
     ingredients = data.get("ingredients", [])
+    
 
     if not title or not description:
         return {"error": "Title and description are required"}, 400
@@ -53,7 +54,7 @@ def add_recipe():
 
     # Add ingredients
     for ing_name in ingredients:
-        ingredient = Ingredient(name=ing_name, recipe_id=recipe.id)
+        ingredient = Ingredients(name=ing_name, recipe_id=recipe.id)
         db.session.add(ingredient)
 
     db.session.commit()
