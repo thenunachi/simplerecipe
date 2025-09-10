@@ -2,7 +2,7 @@
 import { useState } from "react";
 import PrepTime from "./inputForms/prepTime";
 import Ingredients from "./inputForms/ingredients"
-
+import Nutrition from "./inputForms/nutrition";
 
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +13,13 @@ const NewRecipe = () => {
     cooking: ""
   });
   const [err, setErr] = useState("")
-  const [ingredients, setIngredients] = useState([""])
+  const [ingredients, setIngredients] = useState([""]);
+  const [nutrition, setNutrition] = useState({
+    calories: "",
+    protein: "",
+    carbs: "",
+    fat: ""
+  })
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,7 +27,8 @@ const NewRecipe = () => {
       title,
       description,
       prepTime,
-      ingredients
+      ingredients,
+      nutrition
     };
 
     console.log("Submitting:", payload);
@@ -71,6 +78,7 @@ const NewRecipe = () => {
         {/* Pass state + setter into PrepTime */}
         <PrepTime prepTime={prepTime} setPrepTime={setPrepTime} />
         <Ingredients ingredients={ingredients} setIngredients={setIngredients} />
+        <Nutrition nutrition={nutrition} setNutrition={setNutrition} />
         <button type="submit">Submit</button>
       </form>
     </>
