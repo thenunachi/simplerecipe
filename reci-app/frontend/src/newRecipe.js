@@ -1,6 +1,8 @@
 // NewRecipe.js
 import { useState } from "react";
 import PrepTime from "./inputForms/prepTime";
+import Ingredients from "./inputForms/ingredients"
+
 
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
@@ -11,14 +13,15 @@ const NewRecipe = () => {
     cooking: ""
   });
   const [err, setErr] = useState("")
-
+  const [ingredients, setIngredients] = useState([""])
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
       title,
       description,
-      prepTime
+      prepTime,
+      ingredients
     };
 
     console.log("Submitting:", payload);
@@ -67,7 +70,7 @@ const NewRecipe = () => {
 
         {/* Pass state + setter into PrepTime */}
         <PrepTime prepTime={prepTime} setPrepTime={setPrepTime} />
-
+        <Ingredients ingredients={ingredients} setIngredients={setIngredients} />
         <button type="submit">Submit</button>
       </form>
     </>

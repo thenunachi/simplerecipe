@@ -46,8 +46,12 @@ function App() {
         <div className='heading '>
           Preparation time
         </div>
-
-        {prepTime && prepTime.map((e) => (
+        <ul className="prep-time">
+          <li className='outfit-light'><span className='outfit-bold'>Total</span>: <span>Approximately 10 minutes</span></li>
+          <li className='outfit-light'><span className='outfit-bold'>Preparation</span>: <span>5 minutes</span></li>
+          <li className='outfit-light'><span className='outfit-bold'>Cooking</span>: <span>5 minutes</span></li>
+        </ul>
+        {/* {prepTime && prepTime.map((e) => (
           <div key={e.id}>
             <ul className="prep-time">
               <button onClick={() => setEditingId(e.id)}>Edit</button>
@@ -59,7 +63,7 @@ function App() {
             {editingId === e.id && < UpdatePrepTime id={editingId} fetchPrepTimes={fetchPrepTimes} />}
 
           </div>))}
-        <PrepTime fetchPrepTimes={fetchPrepTimes} />
+        <PrepTime fetchPrepTimes={fetchPrepTimes} /> */}
       </div>
 
       <div className='ingredients'>
@@ -73,7 +77,7 @@ function App() {
           </li>
         </ul>
       </div>
-      <Ingredients/>
+      {/* <Ingredients /> */}
       <hr />
       <div className="ingredients-list">Instructions</div>
 
