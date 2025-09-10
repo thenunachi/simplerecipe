@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import NewRecipe from './newRecipe';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/newRecipe" element={<NewRecipe />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

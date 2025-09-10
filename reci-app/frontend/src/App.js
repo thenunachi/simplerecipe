@@ -4,7 +4,7 @@ import egg from './img/image-omelette.jpeg';
 import PrepTime from './inputForms/prepTime';
 import UpdatePrepTime from './inputForms/updatePrepTime';
 import { useState, useEffect } from 'react';
-
+import Ingredients from './inputForms/ingredients';
 
 function App() {
   const [prepTime, setPrepTime] = useState([])
@@ -73,6 +73,7 @@ function App() {
           </li>
         </ul>
       </div>
+      <Ingredients/>
       <hr />
       <div className="ingredients-list">Instructions</div>
 
