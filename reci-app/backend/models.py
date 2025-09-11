@@ -45,7 +45,19 @@ class Nutrition(db.Model):
             "fat": self.fat
         }
         
-        
+class Instruction(db.Model):
+    __tablename__ = "instructions"
+    id = db.Column(db.Integer, primary_key=True)
+    step_title = db.Column(db.String(200), nullable=False)   # e.g. "Beat the eggs"
+    step_description = db.Column(db.Text, nullable=False)    # e.g. "In a bowl, beat the eggs..."
+    recipe_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "step_title": self.step_title,
+            "step_description": self.step_description
+            }
 class Recipe(db.Model):
     __tablename__ = 'recipes'
     id = db.Column(db.Integer, primary_key=True)
@@ -56,6 +68,7 @@ class Recipe(db.Model):
     ingredients = db.relationship("Ingredients", backref="recipe", lazy=True)
     prep_times = db.relationship("PreparationTime", backref="recipe", lazy=True)
     nutrition = db.relationship("Nutrition",backref="recipe",lazy=True)
+    instructions = db.relationship("Instruction", backref="recipe", lazy=True)
     def to_dict(self):
         return {
             "id": self.id,
@@ -63,5 +76,6 @@ class Recipe(db.Model):
             "description": self.description,
             "ingredients": [ing.to_dict() for ing in self.ingredients],
             "prep_times": [pt.to_dict() for pt in self.prep_times],
-            "nutrition": [nutri.to_dict() for nutri in self.nutrition]
+            "nutrition": [nutri.to_dict() for nutri in self.nutrition],
+            "instructions": [instruction.to_dict()  for instruction in self.instructions]
         }
