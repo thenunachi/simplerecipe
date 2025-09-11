@@ -30,6 +30,7 @@ def add_recipe():
 
     title = data.get("title")
     description = data.get("description")
+    image_url = data.get("image_url")
     prep_time = data.get("prepTime")
     ingredients = data.get("ingredients", [])
     nutrition = data.get("nutrition")
@@ -38,7 +39,7 @@ def add_recipe():
         return {"error": "Title and description are required"}, 400
 
     # Create recipe
-    recipe = Recipe(title=title, description=description)
+    recipe = Recipe(title=title, description=description,image_url=image_url)
     db.session.add(recipe)
     db.session.flush()  # get recipe.id without committing yet
 

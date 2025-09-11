@@ -63,6 +63,7 @@ class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)   # title of recipe
     description = db.Column(db.Text, nullable=False)    # recipe description
+    image_url = db.Column(db.String(500)) 
 
     # relationships
     ingredients = db.relationship("Ingredients", backref="recipe", lazy=True)
@@ -74,6 +75,7 @@ class Recipe(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
+            "image_url": self.image_url,
             "ingredients": [ing.to_dict() for ing in self.ingredients],
             "prep_times": [pt.to_dict() for pt in self.prep_times],
             "nutrition": [nutri.to_dict() for nutri in self.nutrition],
