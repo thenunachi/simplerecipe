@@ -8,6 +8,7 @@ import Instruction from "./inputForms/instruction";
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [imgUrl,setImgUrl] = useState("")
   const [prepTime, setPrepTime] = useState({
     total: "",
     preparation: "",
@@ -28,6 +29,7 @@ const NewRecipe = () => {
     const payload = {
       title,
       description,
+      image_url : imgUrl,
       prepTime,
       ingredients,
       nutrition,
@@ -75,6 +77,14 @@ const NewRecipe = () => {
             value={description}
             placeholder="Write the description of the recipe"
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </label>
+         <label>
+          Enter the image of recipe:
+          <textarea
+            value={imgUrl}
+            placeholder="Add the image of the recipe"
+            onChange={(e) => setImgUrl(e.target.value)}
           />
         </label>
 
