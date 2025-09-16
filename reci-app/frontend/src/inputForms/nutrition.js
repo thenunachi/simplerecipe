@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import '../newRecipe.css'
 const Nutrition = ({ nutrition, setNutrition }) => {
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -14,7 +14,7 @@ const Nutrition = ({ nutrition, setNutrition }) => {
         <div>
             <h3>Nutrition</h3>
             <p>The table below shows nutritional values per serving without the additional fillings.</p>
-            <label>
+            <label className="label">
                 Calories:
                 <input
                     type="number"
@@ -24,7 +24,7 @@ const Nutrition = ({ nutrition, setNutrition }) => {
 
             </label>
             <br />
-            <label>
+            <label className="label">
                 Protein (g):
                 <input
                     type="number"
@@ -34,7 +34,7 @@ const Nutrition = ({ nutrition, setNutrition }) => {
                 />
             </label>
             <br />
-            <label>
+            <label className="label">
                 Carbs (g):
                 <input
                     type="number"
@@ -44,7 +44,7 @@ const Nutrition = ({ nutrition, setNutrition }) => {
                 />
             </label>
             <br />
-            <label>
+            <label className="label">
                 Fat (g):
                 <input
                     type="number"

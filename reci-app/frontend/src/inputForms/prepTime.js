@@ -1,13 +1,13 @@
 import React from "react"
 import { useState, useEffect } from "react"
-
+import "../newRecipe.css"
 
 
 const PrepTime = ({ fetchPrepTimes,prepTime,setPrepTime }) => {
    return (
     <div>
-      <label>
-        Total:
+      <label className="label">
+        Total time for cooking:
         <input
           type="text"
           value={prepTime.total}
@@ -15,8 +15,8 @@ const PrepTime = ({ fetchPrepTimes,prepTime,setPrepTime }) => {
         />
       </label>
 
-      <label>
-        Preparation:
+      <label className="label">
+        Preparation Time:
         <input
           type="text"
           value={prepTime.preparation}
@@ -26,8 +26,8 @@ const PrepTime = ({ fetchPrepTimes,prepTime,setPrepTime }) => {
         />
       </label>
 
-      <label>
-        Cooking:
+      <label className="label">
+        Cooking Time:
         <input
           type="text"
           value={prepTime.cooking}

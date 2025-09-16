@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./instruction.css"
 
 const Instruction = ({ instructions, setInstructions }) => {
 
@@ -8,15 +9,17 @@ const Instruction = ({ instructions, setInstructions }) => {
         setInstructions(newInstructions)
     }
     const removeStep = (index) => {
-        setInstructions(instructions.filter((_, i) => i != index))
+        setInstructions(instructions.filter((_, i) => i !== index))
     }
     const addStep = () => {
         setInstructions([...instructions, { "title": "", "description": "" }])
     }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <div className="instruction-container">
+            <div>Write the instructions for the recipe:</div>
             {instructions.map((step, index) => (
-                <div key={index} style={{ marginBottom: "15px" }}>
+                <div key={index} className="instruction-step">
                     <input
                         type="text"
                         placeholder={`Step ${index + 1} Title`}
@@ -33,8 +36,10 @@ const Instruction = ({ instructions, setInstructions }) => {
                     </button>
                 </div>
             ))}
-            <button type="button" onClick={addStep}>+ Add Step</button>
-        </form>
+            <button type="button" className="add-step-btn" onClick={addStep}>
+                + Add Step
+            </button>
+        </div>
     )
 }
 export default Instruction

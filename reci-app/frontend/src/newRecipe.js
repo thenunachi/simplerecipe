@@ -4,6 +4,8 @@ import PrepTime from "./inputForms/prepTime";
 import Ingredients from "./inputForms/ingredients"
 import Nutrition from "./inputForms/nutrition";
 import Instruction from "./inputForms/instruction";
+import './newRecipe.css'
+import './inputForms/instruction.css'
 
 const NewRecipe = () => {
   const [title, setTitle] = useState("");
@@ -58,10 +60,10 @@ const NewRecipe = () => {
   };
 
   return (
-    <>
+    <div className="forms">
       <h1>Create New Recipe</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className= "formInput" onSubmit={handleSubmit}>
+        <label className="label">
           Enter the title:
           <input
             type="text"
@@ -71,7 +73,7 @@ const NewRecipe = () => {
           />
         </label>
 
-        <label>
+        <label className="label">
           Enter the description of recipe:
           <textarea
             value={description}
@@ -79,7 +81,7 @@ const NewRecipe = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </label>
-         <label>
+         <label className="label">
           Enter the image of recipe:
           <textarea
             value={imgUrl}
@@ -95,7 +97,7 @@ const NewRecipe = () => {
         <Nutrition nutrition={nutrition} setNutrition={setNutrition} />
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 };
 
