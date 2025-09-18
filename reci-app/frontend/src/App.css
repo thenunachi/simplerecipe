@@ -5,6 +5,7 @@ body {
   background-color: hsl(330, 100%, 98%);
   min-height: 100vh;
   margin: 0;
+    font-family: "Young Serif", serif;
 }
 
 .App {
@@ -93,7 +94,6 @@ body {
   font-weight: bold;
 }
 
-
 /* Young Serif regular */
 .young-serif-regular {
   font-family: "Young Serif", serif;
@@ -103,7 +103,7 @@ body {
 
 /* Outfit with variable weight */
 .outfit-light {
-  font-family: "Outfit", sans-serif;
+  font-family: "Young Serif", serif;
   font-optical-sizing: auto;
   font-weight: 300;
   /* light */
@@ -119,11 +119,12 @@ body {
 }
 
 .outfit-bold {
-  font-family: "Outfit", sans-serif;
+  font-family: "Young Serif", serif;
   font-optical-sizing: auto;
   font-weight: 700;
   /* bold */
   font-style: bold;
+  color: black
 }
 
 img {
@@ -142,20 +143,11 @@ img {
   border-radius: 25px;
 }
 
-.heading {
-  color: hsl(332, 51%, 32%);
-  font-size: 18px;
-}
 
 
 .ingredients {
   margin: 32px;
 
-}
-
-.ingredients-list {
-  font-size: 24px;
-  color: hsl(14, 45%, 36%);
 }
 
 ul {
@@ -166,7 +158,6 @@ ul {
   display: block;
   /* important */
 }
-
 
 ul li::marker {
   color: hsl(14, 45%, 36%);
@@ -181,7 +172,6 @@ ol li::marker {
   /* bullet color */
   font-size: 1.2em;
   /* optional, make the dot bigger */
-
 
 }
 
@@ -201,4 +191,146 @@ hr {
 .contents {
   font-size: 19px;
   color: hsl(14, 45%, 36%);
+}
+/* Preparation time icon */
+.list .heading::before {
+  content: "⏱️";
+  font-size: 1em;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* Ingredients icon */
+.ingredients-list.ingredients::before {
+  content: "🥕";
+  font-size: 1em;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* Instructions icon */
+.ingredients-list.instructions::before {
+  content: "📖";
+  font-size: 1em;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+/* Nutrition icon */
+.ingredients-list.nutrition::before {
+  content: "🍽️";
+  font-size: 1em;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+
+
+
+/* --- Headings --- */
+ .ingredients-list {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+ 
+  margin-bottom: 12px;
+  gap: 8px; /* ensures space between icon and text */
+  color: hsl(14, 45%, 36%);
+  
+}
+.heading {
+  color: hsl(332, 51%, 32%);
+  font-size: 24px;
+}
+/* --- Section icons --- */
+.list .heading::before {
+  content: "⏱️";
+  font-size: 1.2em;
+}
+
+.ingredients-list.ingredients::before {
+  content: "🥕";
+  font-size: 1.2em;
+}
+
+.ingredients-list.instructions::before {
+  content: "📖";
+  font-size: 1.2em;
+}
+
+.ingredients-list.nutrition::before {
+  content: "🍽️";
+  font-size: 1.2em;
+}
+
+/* --- Lists --- */
+ul, ol {
+  margin: 0;
+  padding-left: 25px;
+}
+
+ul li, ol li {
+  margin-bottom: 10px;
+  color: hsl(30, 10%, 34%);
+}
+
+/* --- List markers --- */
+ul li::marker, ol li::marker {
+  color: hsl(14, 45%, 36%);
+  font-weight: bold;
+}
+
+/* --- Prep time box --- */
+.list {
+  background-color: hsl(330, 100%, 98%);
+  padding: 25px 30px;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.table-container {
+  width: 100%;
+  padding: 20px; /* space around the table */
+  box-sizing: border-box; /* ensures padding doesn’t break width */
+}
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.nutrition-table th, 
+.nutrition-table td {
+  border: 1px solid #ddd;
+  padding: 12px 15px; /* more padding for spacing */
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.nutrition-table th {
+  background-color: hsl(330, 100%, 98%);
+  color: hsl(332, 51%, 32%);
+  text-align: left;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.nutrition-table td {
+  color: #333;
+  width: auto;
+}
+
+/* --- Images --- */
+img {
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 20px;
+}
+
+/* --- General spacing --- */
+.ingredients {
+  margin: 25px 0;
 }
