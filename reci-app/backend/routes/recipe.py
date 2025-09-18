@@ -13,6 +13,13 @@ def get_all_recipe():
         result.append(recipe.to_dict())   # using to_dict from your model
     return jsonify({"recipes": result})
 
+# Get a recipe by id
+@recipe_routes.route('/<int:id>', methods=["GET"])
+def get_recipe(id):
+    recipe = Recipe.query.get(id)
+    if not recipe:
+        return jsonify({"error": "Recipe not found"}), 404
+    return jsonify(recipe.to_dict()), 200
 
 # Add a new recipe
 @recipe_routes.route('/', methods=["POST"])
