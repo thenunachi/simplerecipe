@@ -4,3 +4,4 @@ export async function getThings() {
   const res = await fetch(`${API_BASE}/recipes`); // append endpoint here
   return res.json();
 }
+console.log(API_BASE,"api_base")
