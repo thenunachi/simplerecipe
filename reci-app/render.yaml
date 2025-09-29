@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: simplerecipe-backend
+    env: python
+    rootDir: reci-app/backend   # points to your backend folder
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
