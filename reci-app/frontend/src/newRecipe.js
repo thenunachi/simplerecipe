@@ -8,6 +8,7 @@ import './newRecipe.css'
 import './inputForms/instruction.css'
 import burger from "./img/burger.gif";
 const NewRecipe = () => {
+  const API_BASE = process.env.REACT_APP_API_URL;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imgUrl, setImgUrl] = useState("")
@@ -40,7 +41,7 @@ const NewRecipe = () => {
 
     console.log("Submitting:", payload);
 
-    fetch("http://localhost:8000/recipes/", {
+    fetch(`${API_BASE}/recipes/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)

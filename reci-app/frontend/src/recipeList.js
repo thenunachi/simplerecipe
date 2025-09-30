@@ -11,8 +11,9 @@ const RecipeList = () => {
     const [recipes, setRecipes] = useState([]);
     const [error, setError] = useState("");
     const [search, setSearch] = useState("")
+    const API_BASE = process.env.REACT_APP_API_URL;
     useEffect(() => {
-        fetch("http://localhost:8000/recipes/")
+     fetch(`${API_BASE}/recipes/`)
             .then((res) => {
                 if (!res.ok) throw new Error("Failed to fetch recipes");
                 return res.json();

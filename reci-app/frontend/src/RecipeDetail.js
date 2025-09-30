@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-
+const API_BASE = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    fetch(`http://localhost:8000/recipes/${id}`)
+fetch(`${API_BASE}/recipes/${id}`)
       .then((res) => res.json())
       .then((data) => setRecipe(data))
       .catch((err) => console.error("Error fetching recipe:", err));
