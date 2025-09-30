@@ -17,9 +17,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}) # prevents browser error
 CORS(app, origins=[
     "http://localhost:3000",  # local React dev server
-    "https://simplerecipe-a4wl-o52bmatc9-thenunachis-projects.vercel.app"
+    "https://simplerecipe-a4wl-o52bmatc9-thenunachis-projects.vercel.app",  # preview deployment
+    "https://simplerecipe-a4wl.vercel.app"  # production deployment
 ])
-
 db.init_app(app)
 with app.app_context():
     db.create_all()  # Creates tables based on models if not exist
